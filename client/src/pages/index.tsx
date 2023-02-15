@@ -8,6 +8,7 @@ import React from 'react'
 import { Web3Auth } from '@web3auth/modal'
 import { CHAIN_NAMESPACES, SafeEventEmitterProvider } from '@web3auth/base'
 import { StartonButton } from '@starton/ui-nextjs'
+import { Box, Container, Typography } from '@mui/material'
 import { Home } from '../components/pages/index/Home'
 
 const clientId = 'YOUR_WEB3AUTH_CLIENT_ID' // get from https://dashboard.web3auth.io
@@ -51,13 +52,28 @@ const HomePage: NextPage = () => {
 	}
 
 	return (
-		<React.Fragment>
-			{!provider ? (
-				<StartonButton onClick={login}>Login</StartonButton>
-			) : (
-				<Home provider={provider} web3auth={web3auth} setProvider={setProvider} />
-			)}
-		</React.Fragment>
+		<Container maxWidth="md">
+			<Box
+				display="flex"
+				flexDirection="column"
+				width="100%"
+				minHeight="100vh"
+				justifyContent="center"
+				alignItems="center"
+				gap={4}
+			>
+				<Typography variant="h4" textAlign="center">
+					Starton Meta Transaction
+				</Typography>
+				{!provider ? (
+					<StartonButton variant="outlined" onClick={login}>
+						Connect
+					</StartonButton>
+				) : (
+					<Home provider={provider} web3auth={web3auth} setProvider={setProvider} />
+				)}
+			</Box>
+		</Container>
 	)
 }
 

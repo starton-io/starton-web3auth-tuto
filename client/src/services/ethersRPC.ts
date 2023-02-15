@@ -119,21 +119,35 @@ export default class EthereumRpc {
 		}
 	}
 
-	async signMetaTransaction() {
+	async getStartonTokenBalance() {
+		try {
+			const ethersProvider = new ethers.providers.Web3Provider(this.provider)
+			const signer = ethersProvider.getSigner()
+			const address = await signer.getAddress()
+			const contract = new ethers.Contract(SmartContractConfig.address, SmartContractABI, signer)
+			const balance: BigNumber = await contract.balanceOf(address)
+			return ethers.utils.formatEther(balance).toString()
+		} catch (error) {
+			console.error(error)
+			return 0
+		}
+	}
+
+	async signMetaTransaction(to: string) {
 		try {
 			const ethersProvider = new ethers.providers.Web3Provider(this.provider)
 			const signer = ethersProvider.getSigner()
 			const address = await signer.getAddress()
 			const contract = new ethers.Contract(SmartContractConfig.address, SmartContractABI, signer)
 
-			const addressNonce: BigNumber = await contract.getNonce(address)
+			const addressNonce: BigNumber = await contract.getNonce(address) // Blockchain call
 			const functionSignature = contract.interface.encodeFunctionData('transfer', [
-				address, // to
-				'1000000000000000', // 0.001 ETH
+				to, // to
+				'10000000000000000000', // 10 Starton Tokens
 			])
 
 			const domain: ethers.TypedDataDomain = {
-				name: SmartContractConfig.name,
+				name: SmartContractConfig.name, // Be attentive
 				version: SmartContractConfig.version,
 				verifyingContract: SmartContractConfig.address as `0x${string}`,
 				salt: `0x${parseInt(SmartContractConfig.chainId).toString(16).padStart(64, '0')}`,
@@ -163,7 +177,6 @@ export default class EthereumRpc {
 			}
 
 			const signature = await signer._signTypedData(domain, types, value)
-			console.log(signature)
 			const signatureKeys = ethers.utils.splitSignature(signature)
 			return {
 				functionSignature,

@@ -6,8 +6,11 @@
 
 import React from 'react'
 import { StartonButton } from '@starton/ui-nextjs'
-import axios from 'axios'
-import { Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
+import { SafeEventEmitterProvider } from '@web3auth/base'
+import { Refresh } from '@mui/icons-material'
+import { FundsRequest } from '../FundsRequest'
+import { MetaTransaction } from '../MetaTransaction'
 import RPC from 'services/ethersRPC'
 
 /*
@@ -16,8 +19,8 @@ import RPC from 'services/ethersRPC'
 |--------------------------------------------------------------------------
 */
 export interface HomeProps {
-	provider: any
-	setProvider: React.Dispatch<React.SetStateAction<any>>
+	provider: SafeEventEmitterProvider
+	setProvider: React.Dispatch<React.SetStateAction<SafeEventEmitterProvider | null>>
 	web3auth: any
 }
 
@@ -28,7 +31,8 @@ export interface HomeProps {
 */
 export const Home: React.FC<HomeProps> = (props) => {
 	const { provider, web3auth, setProvider } = props
-	const [address, setAddress] = React.useState('')
+	const [balance, setBalance] = React.useState(0)
+	const [address, setAddress] = React.useState(0)
 
 	const logout = async () => {
 		if (!web3auth) {
@@ -39,36 +43,48 @@ export const Home: React.FC<HomeProps> = (props) => {
 		setProvider(null)
 	}
 
-	const signMetaTransaction = async () => {
+	const refreshBalance = async () => {
 		try {
-			if (!provider) {
-				console.log('provider not initialized yet')
-				return
-			}
 			const rpc = new RPC(provider)
-			const signedMeta = await rpc.signMetaTransaction()
-			const userAddress = await rpc.getAccount()
-			if (!signedMeta || !userAddress) return // TODO
-
-			setAddress(userAddress)
-			await axios.post(`${process.env.NEXT_PUBLIC_API as string}execute-meta-transaction`, {
-				userAddress,
-				functionSignature: signedMeta.functionSignature,
-				sigR: signedMeta.signatureKeys.r,
-				sigS: signedMeta.signatureKeys.s,
-				sigV: signedMeta.signatureKeys.v.toString(),
-			})
-			console.log(signedMeta?.functionSignature, signedMeta?.signatureKeys)
+			const _balance = await rpc.getStartonTokenBalance()
+			setBalance(Math.floor(Number(_balance)))
 		} catch (error) {
-			console.error(error)
+			console.log(error)
 		}
 	}
 
+	React.useEffect(() => {
+		const getAddress = async () => {
+			try {
+				const rpc = new RPC(provider)
+				const _address = await rpc.getAccount()
+				setAddress(_address)
+			} catch (error) {
+				console.log(error)
+			}
+		}
+		void refreshBalance()
+		void getAddress()
+	}, [provider, refreshBalance])
+
 	return (
-		<React.Fragment>
-			<Typography>{address}</Typography>
-			<StartonButton onClick={signMetaTransaction}>Meta transaction</StartonButton>
-			<StartonButton onClick={logout}>Logout</StartonButton>
-		</React.Fragment>
+		<Box display="flex" flexDirection="column" gap={4} width="100%">
+			<FundsRequest provider={provider} />
+			<MetaTransaction provider={provider} />
+			<Box display="flex" flexDirection="column" gap={1}>
+				<Typography>
+					<Box component="strong">Address</Box>: {address}
+				</Typography>
+				<Box display="flex" gap={1} alignItems="center">
+					<Typography>
+						<Box component="strong">Balance</Box>: {balance}
+					</Typography>
+					<StartonButton onClick={refreshBalance} startIcon={<Refresh />} variant="outlined" />
+				</Box>
+				<StartonButton variant="outlined" onClick={logout}>
+					Logout
+				</StartonButton>
+			</Box>
+		</Box>
 	)
 }

@@ -14,6 +14,7 @@ import { Provider } from 'react-redux'
 import { deepmerge } from '@mui/utils'
 import { frFR, enUS, Localization } from '@mui/material/locale'
 import merge from 'lodash/merge'
+import { SnackbarProvider } from 'notistack'
 import { DEFAULT_SEO_PROPS, DefaultSeoPropsExtra } from 'config/common/seo.config'
 import { store } from 'stores/store'
 import createEmotionCache from 'utils/createEmotionCache'
@@ -95,10 +96,12 @@ export default function StartonApp({
 		<CacheProvider value={emotionCache}>
 			<Provider store={store}>
 				<ThemeProvider theme={MUITheme}>
-					<DefaultSeo {...defaultDataProps} />
-					{/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-					<CssBaseline />
-					<Component {...pageProps} />
+					<SnackbarProvider maxSnack={5}>
+						<DefaultSeo {...defaultDataProps} />
+						{/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+						<CssBaseline />
+						<Component {...pageProps} />
+					</SnackbarProvider>
 				</ThemeProvider>
 			</Provider>
 		</CacheProvider>
