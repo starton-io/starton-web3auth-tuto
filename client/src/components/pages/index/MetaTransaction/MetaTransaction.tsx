@@ -47,7 +47,7 @@ export const MetaTransaction: React.FC<MetaTransactionProps> = (props) => {
 			const rpc = new RPC(provider)
 			const signedMeta = await rpc.signMetaTransaction(values.address)
 			const userAddress = await rpc.getAccount()
-			if (!signedMeta || !userAddress) return // TODO
+			if (!signedMeta || !userAddress) return
 
 			const response = await axios.post(`${process.env.NEXT_PUBLIC_API as string}execute-meta-transaction`, {
 				userAddress,
@@ -57,9 +57,10 @@ export const MetaTransaction: React.FC<MetaTransactionProps> = (props) => {
 				sigV: signedMeta.signatureKeys.v.toString(),
 			})
 			setTransactionHash(response.data.transactionHash)
-			enqueueSnackbar('Starton successfully sent meta transaction !', { variant: 'success' })
+			enqueueSnackbar('Meta transaction sent by Starton !', { variant: 'success' })
 		} catch (error) {
-			enqueueSnackbar('Meta transaction failed...', { variant: 'error' })
+			enqueueSnackbar('Meta transaction failed (check console for more infos)', { variant: 'error' })
+			console.error(error)
 		}
 	}
 

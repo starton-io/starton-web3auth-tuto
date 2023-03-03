@@ -6,8 +6,10 @@
 
 import type { SafeEventEmitterProvider } from '@web3auth/base'
 import { BigNumber, ethers } from 'ethers'
+import { enqueueSnackbar } from 'notistack'
 import { SmartContractConfig } from '../config/smart-contract/smartContract.config'
 import { SmartContractABI } from '../config/smart-contract/smartContractABI.config'
+import { StartonConfig } from '../config/starton/starton.config'
 
 /*
 |--------------------------------------------------------------------------
@@ -142,8 +144,8 @@ export default class EthereumRpc {
 
 			const addressNonce: BigNumber = await contract.getNonce(address) // Blockchain call
 			const functionSignature = contract.interface.encodeFunctionData('transfer', [
-				to, // to
-				'10000000000000000000', // 10 Starton Tokens
+				to,
+				ethers.utils.parseEther(StartonConfig.metaTransactionValue),
 			])
 
 			const domain: ethers.TypedDataDomain = {
@@ -178,11 +180,13 @@ export default class EthereumRpc {
 
 			const signature = await signer._signTypedData(domain, types, value)
 			const signatureKeys = ethers.utils.splitSignature(signature)
+			enqueueSnackbar('Meta transaction signed successfully', { variant: 'success' })
 			return {
 				functionSignature,
 				signatureKeys,
 			}
 		} catch (error) {
+			enqueueSnackbar('Error: meta transaction signing (check console for more info)', { variant: 'error' })
 			console.log(error)
 		}
 	}

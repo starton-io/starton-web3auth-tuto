@@ -45,8 +45,8 @@ export const FundsRequest: React.FC<FundsRequestProps> = (props) => {
 			setRequestTx(response.data.transactionHash)
 			enqueueSnackbar('Request sent !', { variant: 'success' })
 		} catch (error) {
+			enqueueSnackbar('Request failed (check console for more info)', { variant: 'error' })
 			console.log(error)
-			enqueueSnackbar('Request failed...', { variant: 'error' })
 		}
 		setIsLoading(false)
 	}

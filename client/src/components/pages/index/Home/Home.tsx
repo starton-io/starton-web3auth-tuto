@@ -9,6 +9,7 @@ import { StartonButton } from '@starton/ui-nextjs'
 import { Box, Typography } from '@mui/material'
 import { SafeEventEmitterProvider } from '@web3auth/base'
 import { Refresh } from '@mui/icons-material'
+import { enqueueSnackbar } from 'notistack'
 import { FundsRequest } from '../FundsRequest'
 import { MetaTransaction } from '../MetaTransaction'
 import RPC from 'services/ethersRPC'
@@ -36,7 +37,7 @@ export const Home: React.FC<HomeProps> = (props) => {
 
 	const logout = async () => {
 		if (!web3auth) {
-			console.log('web3auth not initialized yet')
+			enqueueSnackbar('Error: web3auth not initialised yet', { variant: 'error' })
 			return
 		}
 		await web3auth.logout()
@@ -49,7 +50,8 @@ export const Home: React.FC<HomeProps> = (props) => {
 			const _balance = await rpc.getStartonTokenBalance()
 			setBalance(Math.floor(Number(_balance)))
 		} catch (error) {
-			console.log(error)
+			enqueueSnackbar('Error: balance refresh (check console for more info)', { variant: 'error' })
+			console.error(error)
 		}
 	}
 
@@ -60,7 +62,8 @@ export const Home: React.FC<HomeProps> = (props) => {
 				const _address = await rpc.getAccount()
 				setAddress(_address)
 			} catch (error) {
-				console.log(error)
+				enqueueSnackbar('Error: address fetch (check console for more info)', { variant: 'error' })
+				console.error(error)
 			}
 		}
 		void refreshBalance()
