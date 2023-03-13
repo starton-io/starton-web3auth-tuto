@@ -43,7 +43,7 @@ yarn-error.log*
 # others
 yarn.lock
 package-lock.json
-/.idea
+.idea
 
 # orval generations
 /src/services/api/starton

@@ -39,7 +39,7 @@ export const FundsRequest: React.FC<FundsRequestProps> = (props) => {
 			const rpc = new RPC(provider)
 			const userAddress = await rpc.getAccount()
 
-			const response = await axios.post(`${process.env.NEXT_PUBLIC_API as string}request-funds`, {
+			const response = await axios.post(`${process.env.NEXT_PUBLIC_API as string}/request-funds`, {
 				userAddress,
 			})
 			setRequestTx(response.data.transactionHash)

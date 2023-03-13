@@ -1,9 +1,10 @@
 import { HttpException, Injectable } from '@nestjs/common';
-import axios, { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
 import { ExecuteMetaTransactionDto } from './dtos/ExecuteMetaTransactionDto';
 import { RequestFundsDto } from './dtos/RequestFundsDto';
 import { ethers } from 'ethers';
 import { StartonConfig } from './config/starton.config';
+import { StartonAxios } from './utils/axios.utils';
 
 @Injectable()
 export class AppService {
@@ -11,7 +12,7 @@ export class AppService {
     const { userAddress, functionSignature, sigR, sigS, sigV } = data;
 
     try {
-      const response = await axios.post(
+      const response = await StartonAxios.post(
         StartonConfig.smartContractCallUrl,
         {
           functionName:
@@ -19,11 +20,6 @@ export class AppService {
           params: [userAddress, functionSignature, sigR, sigS, sigV],
           signerWallet: StartonConfig.signerWallet,
           speed: StartonConfig.transactionSpeed,
-        },
-        {
-          headers: {
-            'x-api-key': process.env.STARTON_API_KEY,
-          },
         },
       );
       return response.data;
@@ -41,7 +37,7 @@ export class AppService {
     const { userAddress } = data;
 
     try {
-      const response = await axios.post(
+      const response = await StartonAxios.post(
         StartonConfig.smartContractCallUrl,
         {
           functionName: 'transfer(address,uint256)',
@@ -51,11 +47,6 @@ export class AppService {
           ],
           signerWallet: StartonConfig.signerWallet,
           speed: StartonConfig.transactionSpeed,
-        },
-        {
-          headers: {
-            'x-api-key': process.env.STARTON_API_KEY,
-          },
         },
       );
       return response.data;

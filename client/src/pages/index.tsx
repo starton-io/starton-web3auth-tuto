@@ -5,41 +5,18 @@
 
 import type { NextPage } from 'next'
 import React from 'react'
-import { Web3Auth } from '@web3auth/modal'
-import { CHAIN_NAMESPACES, SafeEventEmitterProvider } from '@web3auth/base'
+import { SafeEventEmitterProvider } from '@web3auth/base'
 import { StartonButton } from '@starton/ui-nextjs'
 import { Box, Container, Typography } from '@mui/material'
 import { enqueueSnackbar } from 'notistack'
 import { Home } from '../components/pages/index/Home'
+import { useWeb3AuthInit } from '../hooks/useWeb3AuthInit'
 
 const clientId = 'YOUR_WEB3AUTH_CLIENT_ID' // get from https://dashboard.web3auth.io
 
 const HomePage: NextPage = () => {
-	const [web3auth, setWeb3auth] = React.useState<Web3Auth | null>(null)
+	const web3auth = useWeb3AuthInit(clientId)
 	const [provider, setProvider] = React.useState<SafeEventEmitterProvider | null>(null)
-
-	React.useEffect(() => {
-		const init = async () => {
-			try {
-				const web3auth = new Web3Auth({
-					clientId,
-					web3AuthNetwork: 'testnet',
-					chainConfig: {
-						chainNamespace: CHAIN_NAMESPACES.EIP155,
-						chainId: '0x' + Number(43113).toString(16), // Avalanche Fuji
-						rpcTarget: 'https://api.avax-test.network/ext/bc/C/rpc',
-					},
-				})
-				await web3auth.initModal()
-				setWeb3auth(web3auth)
-			} catch (error) {
-				enqueueSnackbar('Error: web3auth initialisation', { variant: 'error' })
-				console.error(error)
-			}
-		}
-
-		void init()
-	}, [])
 
 	const login = async () => {
 		if (!web3auth) {

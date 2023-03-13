@@ -49,7 +49,7 @@ export const MetaTransaction: React.FC<MetaTransactionProps> = (props) => {
 			const userAddress = await rpc.getAccount()
 			if (!signedMeta || !userAddress) return
 
-			const response = await axios.post(`${process.env.NEXT_PUBLIC_API as string}execute-meta-transaction`, {
+			const response = await axios.post(`${process.env.NEXT_PUBLIC_API as string}/execute-meta-transaction`, {
 				userAddress,
 				functionSignature: signedMeta.functionSignature,
 				sigR: signedMeta.signatureKeys.r,
