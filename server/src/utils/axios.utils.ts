@@ -4,7 +4,6 @@
 | Author : Calixte De Tourris (calixte@starton.io)
 */
 import axios from 'axios';
-import { StartonBaseURL } from '../config/starton.config';
 import { config } from 'dotenv';
 
 config();
@@ -14,8 +13,11 @@ config();
 | Utils
 |--------------------------------------------------------------------------
 */
+
+export const STARTON_BASE_URL = 'https://api.starton.io/v3';
+
 export const StartonAxios = axios.create({
-  baseURL: StartonBaseURL,
+  baseURL: STARTON_BASE_URL,
   headers: {
     'x-api-key': process.env.STARTON_API_KEY,
   },

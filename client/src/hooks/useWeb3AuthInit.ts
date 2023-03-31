@@ -13,6 +13,7 @@ import React from 'react'
 import { Web3Auth } from '@web3auth/modal'
 import { CHAIN_NAMESPACES } from '@web3auth/base'
 import { enqueueSnackbar } from 'notistack'
+import { RPC_TARGET, SMART_CONTRACT_CHAIN_ID } from 'config/smart-contract/smartContract.config'
 
 export const useWeb3AuthInit = (clientId: string): Web3Auth | null => {
 	const [web3auth, setWeb3auth] = React.useState<Web3Auth | null>(null)
@@ -25,8 +26,8 @@ export const useWeb3AuthInit = (clientId: string): Web3Auth | null => {
 					web3AuthNetwork: 'testnet',
 					chainConfig: {
 						chainNamespace: CHAIN_NAMESPACES.EIP155,
-						chainId: '0x' + Number(43113).toString(16), // Avalanche Fuji
-						rpcTarget: 'https://api.avax-test.network/ext/bc/C/rpc',
+						chainId: '0x' + Number(SMART_CONTRACT_CHAIN_ID).toString(16), // Avalanche Fuji
+						rpcTarget: RPC_TARGET,
 					},
 				})
 				await web3auth.initModal()

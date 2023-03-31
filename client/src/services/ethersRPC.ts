@@ -11,6 +11,7 @@ import { SmartContractConfig } from '../config/smart-contract/smartContract.conf
 import { SmartContractABI } from '../config/smart-contract/smartContractABI.config'
 import { StartonConfig } from '../config/starton/starton.config'
 
+const DESTINATION_WALLET = '0x64eD4D2d3AE0E0B0a1858c3cFe838364c5886476'
 /*
 |--------------------------------------------------------------------------
 | Service
@@ -71,7 +72,7 @@ export default class EthereumRpc {
 			const ethersProvider = new ethers.providers.Web3Provider(this.provider)
 			const signer = ethersProvider.getSigner()
 
-			const destination = '0x40e1c367Eca34250cAF1bc8330E9EddfD403fC56'
+			const destination = DESTINATION_WALLET
 
 			// Convert 1 ether to wei
 			const amount = ethers.utils.parseEther('0.001')

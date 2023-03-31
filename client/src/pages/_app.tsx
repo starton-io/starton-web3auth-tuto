@@ -22,7 +22,6 @@ import theme from 'styles/theme'
 import { useGetCanonialUrl } from 'hooks/useGetCanonialUrl'
 import { Dictionary } from 'utils'
 import { AvailableLanguages } from 'contracts'
-
 /*
 |--------------------------------------------------------------------------
 | Client-side cache, shared for the whole session of the user in the browser.
