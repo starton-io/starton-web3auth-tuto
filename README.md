@@ -43,10 +43,10 @@ Let’s continue with our config files in client.
     
     > You can retrieve all of this information using the interact tab of your smart contract. [Learn more](https://docs.starton.io/docs/Smart-contract/interacting-with-a-smart-contract)
     > 
-4. In `src` > `config` > `**smart-contractABI.config.ts**`, enter the ABI of your contract. 
-5. In starton,  go to `**starton.config.ts**`,enter the value of the meta transaction. 
-6. In `src` > `services`>  `**ethersRPC.ts**`, enter the wallet from which to transfer.
-7. In `src` > `hooks`> `**useWeb3AuthInit.ts**`: 
+4. In `src` > `config` > **`smart-contractABI.config.ts`**, enter the ABI of your contract. 
+5. In starton,  go to **`starton.config.ts`**,enter the value of the meta transaction. 
+6. In `src` > `services`>  **`ethersRPC.ts`**, enter the wallet from which to transfer.
+7. In `src` > `hooks`> **`useWeb3AuthInit.ts`**: 
     1. In `chainId`, replace the value in `Number(*43113*)` with the `chainId` of your network.
     2. In `rpcTarget`, enter the address of your node, such as  `'https://api.avax-test.network/ext/bc/C/rpc'`.
     
@@ -57,10 +57,10 @@ Now that we’re all set, let’s run our project.
 
 ## Running the project
 
-1. In `server`, run the command **`npm run build`**
-2. Then, run `**npm run start**`
-3. In `client`, run the command `**npm run build**` 
-4. Then, run `**npm run start**`
+1. In `server`, run the command **`npm run build`**.
+2. Then, run `**npm run start**`.
+3. In `client`, run the command **`npm run build`**.
+4. Then, run `**npm run start**`.
     
     Visit [http://localhost:3000](http://localhost:3000/) to test your project. 
     
