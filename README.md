@@ -43,10 +43,10 @@ Let’s continue with our config files in client.
     
     > You can retrieve all of this information using the interact tab of your smart contract. [Learn more](https://docs.starton.io/docs/Smart-contract/interacting-with-a-smart-contract)
     > 
-4. In `src`>`config` > `**smart-contractABI.config.ts**`, enter the ABI of your contract. 
-5. In starton,  go to `**starton.config.ts`,** enter the value of the meta transaction. 
-6. In `src` > `services`>  **`ethersRPC.ts`**, enter the wallet from which to transfer.
-7. In `src` > `hooks`> `useWeb3AuthInit.ts`: 
+4. In `src` > `config` > `**smart-contractABI.config.ts**`, enter the ABI of your contract. 
+5. In starton,  go to `**starton.config.ts**`,enter the value of the meta transaction. 
+6. In `src` > `services`>  `**ethersRPC.ts**`, enter the wallet from which to transfer.
+7. In `src` > `hooks`> `**useWeb3AuthInit.ts**`: 
     1. In `chainId`, replace the value in `Number(*43113*)` with the `chainId` of your network.
     2. In `rpcTarget`, enter the address of your node, such as  `'https://api.avax-test.network/ext/bc/C/rpc'`.
     
