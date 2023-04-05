@@ -4,7 +4,7 @@ This project enables you to create meta transactions with Starton and Web3auth. 
 
 By using two routes on Starton,  you can create meta transactions. This use case is handy when you want to onboard users to web3.
 
-> You will need : 
+> You will need: 
 > 
 >- A smart contract that implements ERC20 interface. 
 > Starton Smart contract templates support Metatransactions. To deploy an ERC20 with Starton, go to [How to create your own crypto currency](https://docs.starton.io/docs/Tutorials/creating-token-ERC20-mintable). 
