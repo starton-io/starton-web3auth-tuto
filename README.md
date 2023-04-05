@@ -1,10 +1,6 @@
  # Creating Metatransactions with Web3Auth and Starton
 
-> WHAT IS WEB3AUTH ? 
-Web3auth is an open-source authentication library for web3 applications. It allows users to authenticate with wallets using a social login flow. Similarly, Web3auth offers a solution of wallet address from social login, allowing users to discover Web3 while using a login system they are most likely used to.
-> 
-
-This tutorial will cover how to create meta transactions with Starton and Web3auth. Meta transactions are a useful way to onboard users to the Web3 ecosystem by allowing them to use their familiar social login system, and execute transactions without having to pay gas fees or have Ether in their wallets.
+This project enables you to create meta transactions with Starton and Web3auth. Meta transactions are a useful way to onboard users to the Web3 ecosystem by allowing them to use their familiar social login system, and execute transactions without having to pay gas fees or have Ether in their wallets.
 
 By using two routes on Starton,  you can create meta transactions. This use case is handy when you want to onboard users to web3.
 
@@ -45,7 +41,7 @@ Let’s continue with our config files in client.
     - chainId
     - address
     
-    > You can retrieve all of this information using the interact tab of your smart contract.
+    > You can retrieve all of this information using the interact tab of your smart contract. [Learn more](https://docs.starton.io/docs/Smart-contract/interacting-with-a-smart-contract)
     > 
 4. In `src`>`config` > `**smart-contractABI.config.ts**`, enter the ABI of your contract. 
 5. In starton,  go to `**starton.config.ts`,** enter the value of the meta transaction. 
