@@ -1,7 +1,7 @@
 /*
 | Developed by Starton
 | Filename : RequestFundsDto.ts
-| Author : Calixte De Tourris (calixte@starton.io)
+| Author : Calixte De Tourris (calixte@starton.com)
 */
 
 import { IsEthereumAddress, IsNotEmpty } from 'class-validator';

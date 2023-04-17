@@ -1,7 +1,7 @@
 /*
 | Developed by Starton
 | Filename : useWeb3AuthInit.ts
-| Author : Calixte De Tourris (calixte@starton.io)
+| Author : Calixte De Tourris (calixte@starton.com)
 */
 
 /*
