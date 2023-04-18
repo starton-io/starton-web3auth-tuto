@@ -1,7 +1,7 @@
 /*
 | Developed by Starton
 | Filename : ExecuteMetaTransactionDto.ts
-| Author : Calixte De Tourris (calixte@starton.io)
+| Author : Calixte De Tourris (calixte@starton.com)
 */
 
 import { IsEthereumAddress, IsNotEmpty, IsString } from 'class-validator';

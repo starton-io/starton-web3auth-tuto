@@ -1,7 +1,7 @@
 /*
 | Developed by Starton
 | Filename : axios.utils.ts
-| Author : Calixte De Tourris (calixte@starton.io)
+| Author : Calixte De Tourris (calixte@starton.com)
 */
 import axios from 'axios';
 import { StartonBaseURL } from '../config/starton.config';

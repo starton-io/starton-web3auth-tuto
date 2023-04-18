@@ -1,7 +1,7 @@
 /*
 | Developed by Starton
 | Filename : starton.config.ts
-| Author : Calixte De Tourris (calixte@starton.io)
+| Author : Calixte De Tourris (calixte@starton.com)
 */
 
 /*
@@ -9,7 +9,7 @@
 | Config
 |--------------------------------------------------------------------------
 */
-export const StartonBaseURL = 'https://api.starton.io/v3';
+export const StartonBaseURL = 'https://api.starton.com/v3';
 
 export const StartonConfig = {
   // Starton endpoint to call a Smart Contract function

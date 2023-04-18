@@ -1,7 +1,7 @@
 /*
 | Developed by Starton
 | Filename : smartContract.config.ts
-| Author : Calixte De Tourris (calixte@starton.io)
+| Author : Calixte De Tourris (calixte@starton.com)
 */
 
 import { SmartContractABI } from './smartContractABI.config'

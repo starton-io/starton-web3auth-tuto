@@ -1,7 +1,7 @@
 /*
 | Developed by Starton
 | Filename : starton.config.ts
-| Author : Calixte De Tourris (calixte@starton.io)
+| Author : Calixte De Tourris (calixte@starton.com)
 */
 
 /*

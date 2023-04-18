@@ -7,7 +7,7 @@ By using two routes on Starton,  you can create meta transactions. This use case
 > You will need: 
 > 
 >- A smart contract that implements ERC20 interface. 
-> Starton Smart contract templates support Metatransactions. To deploy an ERC20 with Starton, go to [How to create your own crypto currency](https://docs.starton.io/docs/Tutorials/creating-token-ERC20-mintable). 
+> Starton Smart contract templates support Metatransactions. To deploy an ERC20 with Starton, go to [How to create your own crypto currency](https://docs.starton.com/docs/Tutorials/creating-token-ERC20-mintable). 
 > - A Starton API key 
 > 
 
@@ -41,7 +41,7 @@ Let’s continue with our config files in client.
     - chainId
     - address
     
-    > You can retrieve all of this information using the interact tab of your smart contract. [Learn more](https://docs.starton.io/docs/Smart-contract/interacting-with-a-smart-contract)
+    > You can retrieve all of this information using the interact tab of your smart contract. [Learn more](https://docs.starton.com/docs/Smart-contract/interacting-with-a-smart-contract)
     > 
 4. In `src` > `config` > **`smart-contractABI.config.ts`**, enter the ABI of your contract. 
 5. In starton,  go to **`starton.config.ts`**,enter the value of the meta transaction. 

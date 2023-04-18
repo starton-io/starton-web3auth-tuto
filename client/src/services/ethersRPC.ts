@@ -1,7 +1,7 @@
 /*
 | Developed by Starton
 | Filename : ethersRPC.ts
-| Author : Calixte De Tourris (calixte@starton.io)
+| Author : Calixte De Tourris (calixte@starton.com)
 */
 
 import type { SafeEventEmitterProvider } from '@web3auth/base'
